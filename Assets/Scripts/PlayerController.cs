@@ -4,6 +4,19 @@ public class PlayerController : MonoBehaviour
 {
 	public float speed = 80.0f;
 	private Rigidbody rigid;
+	private int score = 0;
+	
+	/// <summary>
+	///  Increments score when the Player touches an object tagged Pickup
+	/// </summary>
+	/// <param name="other">Collider</param>
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Pickup")
+			score++;
+			Debug.Log($"Score: {score}");
+			Destroy(other.gameObject);
+	}
 
 	void Start() {
 		/// Gets rigidbody at start
