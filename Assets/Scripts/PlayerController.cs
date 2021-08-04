@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 	public float speed = 80.0f;
 	private Rigidbody rigid;
 	private int score = 0;
+	public int health = 5;
 	
 	/// <summary>
 	///  Increments score when the Player touches an object tagged Pickup
@@ -12,9 +13,16 @@ public class PlayerController : MonoBehaviour
 	/// <param name="other">Collider</param>
 	void OnTriggerEnter(Collider other)
 	{
+		/// Keeping score
 		if (other.tag == "Pickup")
 			score++;
 			Debug.Log($"Score: {score}");
+			Destroy(other.gameObject);
+		
+		/// 
+		if (other.tag == "Trap")
+			health--;
+			Debug.Log($"Health: {health}");
 			Destroy(other.gameObject);
 	}
 
