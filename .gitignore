@@ -9,6 +9,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+Library/PackageCache
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -48,6 +49,7 @@ ExportedObj/
 *.pdb.meta
 *.mdb.meta
 
+
 # Unity3D generated file on crash reports
 sysinfo.txt
 
@@ -57,4 +59,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-
