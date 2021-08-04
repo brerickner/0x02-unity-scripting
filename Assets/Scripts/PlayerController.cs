@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,20 +20,26 @@ public class PlayerController : MonoBehaviour
 			Debug.Log($"Score: {score}");
 			Destroy(other.gameObject);
 		
-		/// 
+		/// Tracking health
 		if (other.tag == "Trap")
 			health--;
 			Debug.Log($"Health: {health}");
 			Destroy(other.gameObject);
+		
+		/// Winning!
+		if (other.tag == "Goal")
+			Debug.Log("You win!");
 	}
-
+	
+	/// Gets rigidbody at start for player
 	void Start() {
-		/// Gets rigidbody at start
 		rigid = GetComponent<Rigidbody>();
 	}
+
+	/// Use fixed when working with physics
 	void FixedUpdate()
 	{
-		
+		/// Gets horizontal position when key "a" or "d"/right-left arrowkeys
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis("Vertical");
 		Vector3 move = new Vector3(horizontal, 0.0f, vertical);
@@ -40,6 +47,17 @@ public class PlayerController : MonoBehaviour
 		/// Takes the vector3 move and applies it to direction of addforce and * by speed
 		rigid.AddForce(move * speed);
 		// transform.position += move * speed;
+	}
+	
+	/// Player health expiration
+	void Update (){
+		if (health == 0)
+		{
+			Debug.Log("Game Over!");
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			// SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			// SceneManager.LoadScene(0);
+		}
 	}
 }
 		
