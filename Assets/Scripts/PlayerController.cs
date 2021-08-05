@@ -9,26 +9,32 @@ public class PlayerController : MonoBehaviour
 	public int health = 5;
 	
 	/// <summary>
-	///  Increments score when the Player touches an object tagged Pickup
+	///  Increments score when the Player touches a coin 
 	/// </summary>
-	/// <param name="other">Collider</param>
+	/// <param name="other">coin</param>
 	void OnTriggerEnter(Collider other)
 	{
 		/// Keeping score
 		if (other.tag == "Pickup")
+		{
 			score++;
 			Debug.Log($"Score: {score}");
 			Destroy(other.gameObject);
+		}
 		
 		/// Tracking health
 		if (other.tag == "Trap")
+		{
 			health--;
 			Debug.Log($"Health: {health}");
 			Destroy(other.gameObject);
+		}
 		
 		/// Winning!
 		if (other.tag == "Goal")
+		{
 			Debug.Log("You win!");
+		}		
 	}
 	
 	/// Gets rigidbody at start for player
